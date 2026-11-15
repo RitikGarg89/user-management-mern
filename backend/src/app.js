@@ -5,7 +5,7 @@ const app = express();
 
 app.use(cors({
     origin: process.env.CORS_ORIGIN,
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    methods: ["GET", "POST", "PATCH", "DELETE"],
     credentials: true
 }))
 
@@ -19,7 +19,6 @@ app.use(express.urlencoded({
     extended: true
 }))
 
-app.use(express.static("public"))
 
 
 export { app };
