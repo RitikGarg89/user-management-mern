@@ -19,9 +19,7 @@ export const fetchUsers = createAsyncThunk(
     async (_, { rejectWithValue }) => {
         try {
             const response = await getUsersApi();
-
             return response.data.data;
-
         } catch (error) {
             return rejectWithValue(
                 error.response?.data?.message || "Failed to fetch users"
@@ -35,9 +33,7 @@ export const createUser = createAsyncThunk(
     async (userData, { rejectWithValue }) => {
         try {
             const response = await createUserApi(userData);
-
             return response.data.data;
-
         } catch (error) {
             return rejectWithValue(
                 error.response?.data?.message || "Failed to create user"
@@ -51,9 +47,7 @@ export const updateUser = createAsyncThunk(
     async ({ id, userData }, { rejectWithValue }) => {
         try {
             const response = await updateUserApi(id, userData);
-
             return response.data.data;
-
         } catch (error) {
             return rejectWithValue(
                 error.response?.data?.message || "Failed to update user"
@@ -66,9 +60,8 @@ export const deleteUser = createAsyncThunk(
     "users/deleteUser",
     async (id, { rejectWithValue }) => {
         try {
-            const response = await deleteUserApi(id);
-
-            return response.data.data;
+            await deleteUserApi(id);
+            return id;
 
         } catch (error) {
             return rejectWithValue(
@@ -83,9 +76,7 @@ export const deleteAllUsers = createAsyncThunk(
     async (_, { rejectWithValue }) => {
         try {
             const response = await deleteAllUsersApi();
-
             return response.data.data;
-
         } catch (error) {
             return rejectWithValue(
                 error.response?.data?.message || "Failed to delete all users"
@@ -98,9 +89,7 @@ export const deleteAllUsers = createAsyncThunk(
 const userSlice = createSlice({
     name: "users",
     initialState,
-
     reducers: {},
-
     extraReducers: (builder) => {
         builder
 
@@ -117,7 +106,65 @@ const userSlice = createSlice({
             .addCase(fetchUsers.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
-            });
+            })
+
+            .addCase(createUser.pending, (state) => {
+                state.isLoading = true;
+                state.error = null;
+            })
+            .addCase(createUser.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.users.push(action.payload)
+            })
+            .addCase(createUser.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            })
+            .addCase(updateUser.pending, (state) => {
+                state.isLoading = true;
+                state.error = null;
+            })
+            .addCase(updateUser.fulfilled, (state, action) => {
+                state.isLoading = false;
+
+                const index = state.users.findIndex(
+                    user => user._id === action.payload._id
+                );
+
+                if (index !== -1) {
+                    state.users[index] = action.payload;
+                }
+            })
+            .addCase(updateUser.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            })
+            .addCase(deleteUser.pending, (state) => {
+                state.isLoading = true;
+                state.error = null;
+            })
+            .addCase(deleteUser.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.users = state.users.filter(
+                    user => user._id !== action.payload
+                );
+            })
+            .addCase(deleteUser.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            })
+            .addCase(deleteAllUsers.pending, (state) => {
+                state.isLoading = true;
+                state.error = null;
+            })
+            .addCase(deleteAllUsers.fulfilled, (state) => {
+                state.isLoading = false;
+                state.users = []
+            })
+            .addCase(deleteAllUsers.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            })
     }
 });
 
