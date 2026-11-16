@@ -23,6 +23,11 @@ const userSchema = new mongoose.Schema(
             trim: true,
             lowercase: true,
         },
+        isActive: {
+            type: Boolean,
+            required: true,
+            default: true
+        }
     },
     {
         timestamps: true,

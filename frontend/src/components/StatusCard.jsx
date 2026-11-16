@@ -5,7 +5,7 @@ function StatusCard() {
         <div className='p-4 rounded-xl bg-surface-container-lowest border border-outline shadow-card transition-all duration-100 flex-col flex gap-space-md'>
             <div className='flex justify-between items-center'>
                 <p className='text-body-lg text-on-surface'>TOTAL USERS</p>
-                <div className='h-7 w-7 rounded-button bg-primary-container bg-outline'>
+                <div className='h-7 w-7 rounded-button bg-primary-container border-outline'>
 
                 </div>
             </div>
