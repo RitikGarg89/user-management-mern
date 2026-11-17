@@ -3,7 +3,7 @@ import DashBoard from './pages/DashBoard.jsx'
 
 function App() {
   return (
-    <div className='px-10 mx-auto h-screen bg-surface'>
+    <div className='px-4 sm:px-6 md:px-8 lg:px-10 max-w-7xl mx-auto min-h-screen bg-surface pb-10'>
       <DashBoard />
     </div>
   )

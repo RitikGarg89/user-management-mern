@@ -61,12 +61,12 @@ function DashBoard() {
     ];
 
     return (
-        <div className='flex flex-col gap-gutter-mobile md:gap-gutter'>
+        <div className='flex flex-col gap-4 sm:gap-6'>
             <header>
                 <Header />
             </header>
-            <main className='flex flex-col gap-gutter-mobile md:gap-gutter'>
-                <div className='grid md:grid-cols-3 md:grid-rows-1 grid-cols-1 grid-rows-3 gap-6'>
+            <main className="!flex flex-col gap-6 sm:gap-8 md:gap-10">
+                <div className='grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6'>
                     {statusCards.map(status =>
                         <StatusCard key={status.title} title={status.title} icon={status.icon} value={status.count} bg={status.bg} />
                     )}
