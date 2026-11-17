@@ -1,18 +1,15 @@
 import React from 'react'
 
-function StatusCard() {
+function StatusCard({ title, icon, value }) {
     return (
         <div className='p-4 rounded-xl bg-surface-container-lowest border border-outline shadow-card transition-all duration-100 flex-col flex gap-space-md'>
             <div className='flex justify-between items-center'>
-                <p className='text-body-lg text-on-surface'>TOTAL USERS</p>
+                <p className='text-body-lg text-on-surface'>{title}</p>
                 <div className='h-7 w-7 rounded-button bg-primary-container border-outline'>
-
+                    {icon}
                 </div>
             </div>
-            <div className='flex items-baseline'>
-                <p className='text-headline-lg font-bold pr-space-sm'>1284</p>
-                <p className='text-label-lg'>registered</p>
-            </div>
+            <p className='text-headline-lg font-bold pr-space-sm'>{value}</p>
         </div>
     )
 }
