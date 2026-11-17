@@ -13,7 +13,7 @@ const getAllUsers = asyncHandler(async (req, res) => {
 
 const createUser = asyncHandler(async (req, res) => {
     const { username, fullName, email, isActive } = req.body;
-    if (!username || !fullName || !email || !isActive) {
+    if (!username || !fullName || !email) {
         throw new ApiError(400, "All fields are required");
     };
     const user = await User.create({
