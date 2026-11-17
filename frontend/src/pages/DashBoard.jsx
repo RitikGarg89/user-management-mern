@@ -3,6 +3,7 @@ import Header from '../components/Header.jsx'
 import StatusCard from '../components/StatusCard.jsx'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchUsers } from "../features/UsersSlice.js"
+import UserList from '../components/UserList.jsx'
 
 function DashBoard() {
 
@@ -60,18 +61,19 @@ function DashBoard() {
     ];
 
     return (
-        <>
+        <div className='flex flex-col gap-gutter-mobile md:gap-gutter'>
             <header>
                 <Header />
             </header>
-            <main>
+            <main className='flex flex-col gap-gutter-mobile md:gap-gutter'>
                 <div className='grid md:grid-cols-3 md:grid-rows-1 grid-cols-1 grid-rows-3 gap-6'>
                     {statusCards.map(status =>
                         <StatusCard key={status.title} title={status.title} icon={status.icon} value={status.count} bg={status.bg} />
                     )}
                 </div>
+                <UserList />
             </main>
-        </>
+        </div>
     )
 }
 
