@@ -12,14 +12,15 @@ const getAllUsers = asyncHandler(async (req, res) => {
 });
 
 const createUser = asyncHandler(async (req, res) => {
-    const { username, fullName, email } = req.body;
-    if (!username || !fullName || !email) {
+    const { username, fullName, email, isActive } = req.body;
+    if (!username || !fullName || !email || !isActive) {
         throw new ApiError(400, "All fields are required");
     };
     const user = await User.create({
         username,
         fullName,
-        email
+        email,
+        isActive
     });
     return res
         .status(201)
@@ -28,7 +29,7 @@ const createUser = asyncHandler(async (req, res) => {
 
 const updateUser = asyncHandler(async (req, res) => {
     const { id } = req.params;
-    const { username, fullName, email } = req.body
+    const { username, fullName, email, isActive } = req.body
     if (!id) {
         throw new ApiError(400, "User ID is required");
     }
@@ -37,7 +38,8 @@ const updateUser = asyncHandler(async (req, res) => {
         {
             username,
             fullName,
-            email
+            email,
+            isActive
         },
         {
             new: true,
