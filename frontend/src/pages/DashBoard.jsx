@@ -4,6 +4,7 @@ import StatusCard from '../components/StatusCard.jsx'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchUsers } from "../features/UsersSlice.js"
 import UserList from '../components/UserList.jsx'
+import UserViewCard from '../components/UserViewCard.jsx'
 
 function DashBoard() {
 
@@ -71,7 +72,8 @@ function DashBoard() {
                         <StatusCard key={status.title} title={status.title} icon={status.icon} value={status.count} bg={status.bg} />
                     )}
                 </div>
-                <UserList />
+                {/* <UserList /> */}
+                <UserViewCard />
             </main>
         </div>
     )

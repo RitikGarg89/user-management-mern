@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchUsers } from "../features/UsersSlice.js"
+import UserViewCard from "./UserViewCard.jsx"
 
 function UserList() {
     const dispatch = useDispatch();
+    const [selectedUser, setSelectedUser] = useState(null);
 
     const { users = [], isLoading, error } = useSelector(
         (state) => state.users || {}
@@ -14,7 +16,7 @@ function UserList() {
     }, [dispatch]);
 
     const handleViewMore = (user) => {
-        console.log("View user details:", user);
+        setSelectedUser(user);
     };
 
     return (
@@ -132,6 +134,15 @@ function UserList() {
                     </tbody>
                 </table>
             </div>
+
+            {/* User View Details Modal */}
+            {selectedUser && (
+                <UserViewCard
+                    user={selectedUser}
+                    isOpen={Boolean(selectedUser)}
+                    onClose={() => setSelectedUser(null)}
+                />
+            )}
         </div>
     )
 }
