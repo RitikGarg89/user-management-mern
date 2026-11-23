@@ -48,7 +48,9 @@ function DashBoard() {
                 <Header />
             </header>
             <main className='!flex flex-col gap-gutter-mobile md:gap-gutter'>
-                {statsData.map(stat => <StatusCard key={stat.id} title={stat.title} value={stat.value} icon={stat.icon} iconBg={stat.iconBg} iconColor={stat.iconColor} />)}
+                <div className='grid grid-cols-1 md:grid-cols-3 gap-gutter-mobile md:gap-gutter'>
+                    {statsData.map(stat => <StatusCard key={stat.id} title={stat.title} value={stat.value} icon={stat.icon} iconBg={stat.iconBg} iconColor={stat.iconColor} />)}
+                </div>
             </main>
         </div>
     )
