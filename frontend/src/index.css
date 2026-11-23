@@ -1,17 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
-   /* Colors */
+   /* =================================
+     1. COLORS
+  ================================= */
+
+   /* Background & Surfaces */
    --color-background: #faf8ff;
    --color-surface: #ffffff;
-   --color-surface-secondary: #f2f3ff;
+   --color-surface-low: #f2f3ff;
+   --color-surface-high: #eaedff;
 
+   /* Primary */
    --color-primary: #3525cd;
    --color-primary-hover: #4f46e5;
+   --color-primary-light: #eeecff;
 
-   --color-text-primary: #131b2e;
-   --color-text-secondary: #464555;
+   /* Text */
+   --color-text: #131b2e;
+   --color-text-muted: #464555;
 
+   /* Borders */
    --color-border: #c7c4d8;
 
    /* Status */
@@ -21,27 +31,95 @@
    --color-status-inactive: #b91c1c;
    --color-status-inactive-bg: #fef2f2;
 
+   /* Error */
    --color-error: #ba1a1a;
 
-   /* Typography */
+   /* =================================
+     2. TYPOGRAPHY
+  ================================= */
+
    --font-sans: "Inter", sans-serif;
 
-   --text-heading: 24px;
-   --text-subheading: 18px;
-   --text-body: 14px;
-   --text-small: 12px;
+   --text-headline-xl: 2rem;
+   --text-headline-xl--line-height: 2.5rem;
+   --text-headline-xl--font-weight: 700;
 
-   /* Spacing */
+   --text-headline-lg: 1.5rem;
+   --text-headline-lg--line-height: 2rem;
+   --text-headline-lg--font-weight: 600;
+
+   --text-headline-md: 1.25rem;
+   --text-headline-md--line-height: 1.75rem;
+   --text-headline-md--font-weight: 600;
+
+   --text-headline-sm: 1rem;
+   --text-headline-sm--line-height: 1.5rem;
+   --text-headline-sm--font-weight: 600;
+
+   --text-body-lg: 1rem;
+   --text-body-lg--line-height: 1.5rem;
+
+   --text-body-md: 0.875rem;
+   --text-body-md--line-height: 1.25rem;
+
+   --text-body-sm: 0.75rem;
+   --text-body-sm--line-height: 1rem;
+
+   --text-label-md: 0.875rem;
+   --text-label-md--line-height: 1.25rem;
+   --text-label-md--font-weight: 500;
+
+   --text-label-sm: 0.75rem;
+   --text-label-sm--line-height: 1rem;
+   --text-label-sm--font-weight: 600;
+
+   /* =================================
+     3. SPACING
+  ================================= */
+
    --spacing-gutter: 1.5rem;
+   --spacing-gutter-mobile: 1rem;
+
    --spacing-section: 2rem;
 
-   /* Border Radius */
+   --spacing-space-sm: 0.5rem;
+   --spacing-space-md: 1rem;
+   --spacing-space-lg: 1.5rem;
+   --spacing-space-xl: 2rem;
+
+   /* =================================
+     4. BORDER RADIUS
+  ================================= */
+
    --radius-card: 0.75rem;
    --radius-button: 0.5rem;
    --radius-modal: 1rem;
 
-   /* Shadows */
-   --shadow-card: 0 1px 3px rgb(15 23 42 / 0.05);
-   --shadow-dropdown: 0 4px 12px rgb(15 23 42 / 0.08);
-   --shadow-modal: 0 20px 25px rgb(15 23 42 / 0.1);
+   /* =================================
+     5. SHADOWS
+  ================================= */
+
+   --shadow-card:
+      0 1px 3px rgb(15 23 42 / 0.05),
+      0 1px 2px -1px rgb(15 23 42 / 0.05);
+
+   --shadow-dropdown:
+      0 4px 12px rgb(15 23 42 / 0.08);
+
+   --shadow-modal:
+      0 20px 25px -5px rgb(15 23 42 / 0.1),
+      0 8px 10px -6px rgb(15 23 42 / 0.06);
+}
+
+/* =================================
+   GLOBAL STYLES
+================================= */
+
+body {
+   font-family: var(--font-sans);
+   background: var(--color-background);
+   color: var(--color-text);
+   width: 100%;
+   min-height: 100vh;
+   margin: 0;
 }
