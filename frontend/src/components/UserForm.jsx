@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux';
+import { createUser } from '../features/UsersSlice';
 
 function UserForm({ setActiveUserForm }) {
+
+    const dispatch = useDispatch()
 
     const [formData, setFormData] = useState({
         username: "",
@@ -18,9 +22,16 @@ function UserForm({ setActiveUserForm }) {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(formData);
+
+        try {
+            await dispatch(createUser(formData)).unwrap();
+
+            setActiveUserForm(false);
+        } catch (error) {
+            console.error("Failed to create user:", error);
+        }
     };
     return (
         <div
@@ -129,7 +140,7 @@ function UserForm({ setActiveUserForm }) {
                             </p>
 
                         </div>
-
+                        {/* Toggle Button    */}
                         <button
                             type="button"
                             role="switch"
@@ -158,8 +169,9 @@ function UserForm({ setActiveUserForm }) {
                     <div className='flex gap-3'>
                         {/* Cancel */}
                         <button
+                            type='button'
                             onClick={() => setActiveUserForm(false)}
-                            className='px-4 flex-1 py-2 bg-surface-high text-primary rounded-md cursor-pointer'
+                            className='font-semibold flex-1 py-3 bg-surface-high text-primary rounded-button cursor-pointer'
                         >
                             Close
                         </button>
