@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
-function UsersTable({ setActiveUserForm }) {
+function UsersTable({ setActiveUserForm, setSelectedId, setViewUser }) {
 
     const { users, isLoading, error } = useSelector(state => state.users)
 
@@ -95,6 +95,7 @@ function UsersTable({ setActiveUserForm }) {
                         {filteredUsers.map((user) => (
                             <tr
                                 key={user._id}
+                                onClick={() => setSelectedId(user._id)}
                                 className="border-b border-border/50 hover:bg-surface-secondary/50 transition-colors"
                             >
 

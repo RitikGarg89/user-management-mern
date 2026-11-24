@@ -15,6 +15,8 @@ function DashBoard() {
     }, [])
 
     const [activeUserForm, setActiveUserForm] = useState(false)
+    const [viewUser, setViewUser] = useState(false)
+    const [selectedId, setSelectedId] = useState()
 
     const { users, isLoading, error } = useSelector((state) => state.users);
     const statsData = [
@@ -64,8 +66,9 @@ function DashBoard() {
                 <div className='grid grid-cols-1 md:grid-cols-3 gap-gutter-mobile md:gap-gutter'>
                     {statsData.map(stat => <StatusCard key={stat.id} title={stat.title} value={stat.value} icon={stat.icon} iconBg={stat.iconBg} iconColor={stat.iconColor} />)}
                 </div>
-                <UsersTable setActiveUserForm={setActiveUserForm} />
+                <UsersTable setActiveUserForm={setActiveUserForm} setViewUser={setViewUser} setSelectedId={setSelectedId} />
                 {activeUserForm && <UserForm setActiveUserForm={setActiveUserForm} />}
+                {viewUser && <ViewUser viewUser={viewUser} selectedId={selectedId} setViewUser={setViewUser} setSelectedId={setSelectedId} />}
             </main>
         </div>
     )
