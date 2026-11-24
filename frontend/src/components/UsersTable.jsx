@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
-function UsersTable() {
+function UsersTable({ setActiveUserForm }) {
 
     const { users, isLoading, error } = useSelector(state => state.users)
 
@@ -67,7 +67,7 @@ function UsersTable() {
                         Delete All
                     </button>
 
-                    <button className="px-4 py-2 rounded-button bg-primary text-white text-body-sm font-semibold hover:bg-primary-hover">
+                    <button className="px-4 py-2 rounded-button bg-primary text-white text-body-sm font-semibold hover:bg-primary-hover" onClick={() => setActiveUserForm(true)}>
                         + Add New User
                     </button>
 
