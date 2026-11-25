@@ -1,7 +1,10 @@
 import React from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteUser } from '../features/UsersSlice';
 
 function ViewUser({ selectedId, setViewUser, setSelectedId }) {
+
+    const dispatch = useDispatch()
 
     const { users } = useSelector(state => state.users)
     const user = users.filter(user => user._id === selectedId)
@@ -83,6 +86,14 @@ function ViewUser({ selectedId, setViewUser, setSelectedId }) {
                             })}
                         </p>
                     </div>
+                </div>
+                <div className='pt-space-lg place-items-end'>
+                    <button type="button" className='flex items-center text-status-inactive bg-status-inactive-bg font-semibold gap-1 px-space-md py-space-sm rounded-button' onClick={() => { dispatch(deleteUser(selectedId)); setViewUser(false); setSelectedId(null) }}>
+                        <svg width="12" height="14" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2.25 13.5C1.8375 13.5 1.48438 13.3531 1.19062 13.0594C0.896875 12.7656 0.75 12.4125 0.75 12V2.25H0V0.75H3.75V0H8.25V0.75H12V2.25H11.25V12C11.25 12.4125 11.1031 12.7656 10.8094 13.0594C10.5156 13.3531 10.1625 13.5 9.75 13.5H2.25V13.5M9.75 2.25H2.25V12V12V12H9.75V12V12V2.25V2.25M3.75 10.5H5.25V3.75H3.75V10.5V10.5M6.75 10.5H8.25V3.75H6.75V10.5V10.5M2.25 2.25V2.25V12V12V12V12V12V12V2.25V2.25" fill="#93000A" />
+                        </svg>
+                        Delete User
+                    </button>
                 </div>
             </div>
         </div>
