@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteUser } from '../features/UsersSlice';
 
-function ViewUser({ selectedId, setViewUser, setSelectedId }) {
+function ViewUser({ selectedId, setViewUser, setSelectedId, setActiveUserForm }) {
 
     const dispatch = useDispatch()
 
@@ -93,7 +93,7 @@ function ViewUser({ selectedId, setViewUser, setSelectedId }) {
                     </div>
                 </div>
                 <div className='pt-space-lg flex justify-between items-center'>
-                    <button type="button" className='flex items-center text-primary bg-primary-light font-semibold gap-1 px-space-md py-space-sm rounded-button' onClick={() => { dispatch(deleteUser(selectedId)); setViewUser(false); setSelectedId(null) }}>
+                    <button type="button" className='flex items-center text-primary bg-primary-light font-semibold gap-1 px-space-md py-space-sm rounded-button' onClick={() => { setViewUser(false); setActiveUserForm(true); }}>
                         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M1.5 12H2.56875L9.9 4.66875L8.83125 3.6L1.5 10.9312V12ZM0 13.5V10.3125L9.9 0.43125C10.05 0.29375 10.2156 0.1875 10.3969 0.1125C10.5781 0.0375 10.7688 0 10.9688 0C11.1687 0 11.3625 0.0375 11.55 0.1125C11.7375 0.1875 11.9 0.3 12.0375 0.45L13.0688 1.5C13.2188 1.6375 13.3281 1.8 13.3969 1.9875C13.4656 2.175 13.5 2.3625 13.5 2.55C13.5 2.75 13.4656 2.94062 13.3969 3.12188C13.3281 3.30313 13.2188 3.46875 13.0688 3.61875L3.1875 13.5H0ZM9.35625 4.14375L8.83125 3.6L9.9 4.66875L9.35625 4.14375Z" fill="#3525cd" />
                         </svg>
@@ -107,7 +107,7 @@ function ViewUser({ selectedId, setViewUser, setSelectedId }) {
                     </button>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 

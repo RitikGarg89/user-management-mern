@@ -1,16 +1,19 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
-import { createUser } from '../features/UsersSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { createUser, updateUser } from '../features/UsersSlice';
 
-function UserForm({ setActiveUserForm }) {
+function UserForm({ setActiveUserForm, selectedId }) {
 
     const dispatch = useDispatch()
+    const { users } = useSelector(state => state.users)
+
+    const user = users.filter(user => user._id === selectedId)
 
     const [formData, setFormData] = useState({
-        username: "",
-        fullName: "",
-        email: "",
-        isActive: true
+        username: user[0]?.username || "",
+        fullName: user[0]?.fullName || "",
+        email: user[0]?.email || "",
+        isActive: user[0]?.isActive ?? true
     });
 
     const handleChange = (e) => {
@@ -24,14 +27,15 @@ function UserForm({ setActiveUserForm }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        try {
-            await dispatch(createUser(formData)).unwrap();
-
-            setActiveUserForm(false);
-        } catch (error) {
-            console.error("Failed to create user:", error);
+        if (selectedId) {
+            dispatch(updateUser({
+                id: selectedId,
+                userData: formData
+            }))
+        } else {
+            dispatch(createUser(formData))
         }
+        setActiveUserForm(false);
     };
     return (
         <div
@@ -186,7 +190,7 @@ function UserForm({ setActiveUserForm }) {
                             type="submit"
                             className="w-full flex-2 bg-primary hover:bg-primary-hover text-white py-3 rounded-button font-semibold transition-colors"
                         >
-                            Add User
+                            {selectedId ? "Update User" : "Add User"}
                         </button>
                     </div>
 

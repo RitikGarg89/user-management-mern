@@ -68,8 +68,8 @@ function DashBoard() {
                     {statsData.map(stat => <StatusCard key={stat.id} title={stat.title} value={stat.value} icon={stat.icon} iconBg={stat.iconBg} iconColor={stat.iconColor} />)}
                 </div>
                 <UsersTable setActiveUserForm={setActiveUserForm} setViewUser={setViewUser} setSelectedId={setSelectedId} />
-                {activeUserForm && <UserForm setActiveUserForm={setActiveUserForm} />}
-                {viewUser && <ViewUser selectedId={selectedId} setViewUser={setViewUser} setSelectedId={setSelectedId} />}
+                {activeUserForm && <UserForm setActiveUserForm={setActiveUserForm} selectedId={selectedId} />}
+                {viewUser && <ViewUser setActiveUserForm={setActiveUserForm} selectedId={selectedId} setViewUser={setViewUser} setSelectedId={setSelectedId} />}
             </main>
         </div>
     )
