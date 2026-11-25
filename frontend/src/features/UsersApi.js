@@ -1,5 +1,5 @@
 
-import axiosInstance from "../utils/axiosInstance.js";
+import axiosInstance from "../utils/AxiosInstance.js";
 
 // 1. Fetch all users
 export const getUsersApi = () => {
