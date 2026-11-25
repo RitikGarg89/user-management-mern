@@ -95,7 +95,7 @@ function UsersTable({ setActiveUserForm, setSelectedId, setViewUser }) {
                         {filteredUsers.map((user) => (
                             <tr
                                 key={user._id}
-                                onClick={() => setSelectedId(user._id)}
+                                onClick={() => { setSelectedId(user._id); setViewUser(true); }}
                                 className="border-b border-border/50 hover:bg-surface-secondary/50 transition-colors"
                             >
 

@@ -5,6 +5,7 @@ import UsersTable from '../components/UsersTable';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUsers } from '../features/UsersSlice.js'
 import UserForm from '../components/UserForm.jsx';
+import ViewUser from '../components/ViewUser.jsx';
 
 function DashBoard() {
 
@@ -68,7 +69,7 @@ function DashBoard() {
                 </div>
                 <UsersTable setActiveUserForm={setActiveUserForm} setViewUser={setViewUser} setSelectedId={setSelectedId} />
                 {activeUserForm && <UserForm setActiveUserForm={setActiveUserForm} />}
-                {viewUser && <ViewUser viewUser={viewUser} selectedId={selectedId} setViewUser={setViewUser} setSelectedId={setSelectedId} />}
+                {viewUser && <ViewUser selectedId={selectedId} setViewUser={setViewUser} setSelectedId={setSelectedId} />}
             </main>
         </div>
     )
