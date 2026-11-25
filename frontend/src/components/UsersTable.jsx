@@ -87,7 +87,6 @@ function UsersTable({ setActiveUserForm, setSelectedId, setViewUser }) {
                             <th className="px-5 py-3 font-semibold">Email</th>
                             <th className="px-5 py-3 font-semibold">Status</th>
                             <th className="px-5 py-3 font-semibold">Created At</th>
-                            <th className="px-5 py-3 font-semibold text-center">Actions</th>
                         </tr>
                     </thead>
 
@@ -131,19 +130,6 @@ function UsersTable({ setActiveUserForm, setSelectedId, setViewUser }) {
                                         }
                                     )}
                                 </td>
-
-                                <td className="px-5 py-5">
-                                    <div className="flex justify-center items-center gap-3">
-                                        <button className="text-text-muted hover:text-primary">
-                                            ✎
-                                        </button>
-
-                                        <button className="text-text-muted hover:text-error">
-                                            ♜
-                                        </button>
-                                    </div>
-                                </td>
-
                             </tr>
                         ))}
 
