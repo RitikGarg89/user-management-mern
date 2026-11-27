@@ -27,8 +27,9 @@ app.use(express.urlencoded({
 
 // Users Router
 import userRouter from "./routes/user.routes.js";
+import { errorHandler } from "./middleware/error.middleware.js";
 app.use("/api/v1/users", userRouter);
 
-
+app.use(errorHandler)
 
 export { app };
