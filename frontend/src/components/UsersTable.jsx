@@ -1,8 +1,11 @@
 
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteAllUsers } from "../features/UsersSlice.js";
 
 function UsersTable({ setActiveUserForm, setSelectedId, setViewUser }) {
+
+    const dispatch = useDispatch();
 
     const { users, isLoading, error } = useSelector(state => state.users)
 
@@ -63,7 +66,9 @@ function UsersTable({ setActiveUserForm, setSelectedId, setViewUser }) {
                 {/* Actions */}
                 <div className="flex gap-2">
 
-                    <button className="px-4 py-2 rounded-button bg-status-inactive-bg text-status-inactive hover:bg-red-400 hover:text-status-inactive-bg transition-all duration-300 ease-in-out text-body-sm font-semibold">
+                    <button className="px-4 py-2 rounded-button bg-status-inactive-bg text-status-inactive hover:bg-red-400 hover:text-status-inactive-bg transition-all duration-300 ease-in-out text-body-sm font-semibold"
+                            onClick={()=>dispatch(deleteAllUsers())}
+                            >
                         Delete All
                     </button>
 
