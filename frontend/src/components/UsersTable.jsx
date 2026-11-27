@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteAllUsers } from "../features/UsersSlice.js";
+import LoadingSpinner from "./LoadingSpinner.jsx";
 
 function UsersTable({ setActiveUserForm, setSelectedId, setViewUser }) {
 
@@ -94,9 +95,17 @@ function UsersTable({ setActiveUserForm, setSelectedId, setViewUser }) {
                             <th className="px-5 py-3 font-semibold">Created At</th>
                         </tr>
                     </thead>
-
                     <tbody>
-                        {filteredUsers.map((user) => (
+
+                        {isLoading ? (
+                            <tr>
+                                <td colSpan={5} className="py-10">
+                                    <div className="flex justify-center">
+                                        <LoadingSpinner />
+                                    </div>
+                                </td>
+                            </tr>
+                        ) : filteredUsers.length > 0 ? (filteredUsers.map((user) => (
                             <tr
                                 key={user._id}
                                 onClick={() => { setSelectedId(user._id); setViewUser(true); }}
@@ -136,14 +145,12 @@ function UsersTable({ setActiveUserForm, setSelectedId, setViewUser }) {
                                     )}
                                 </td>
                             </tr>
-                        ))}
-
-                        {filteredUsers.length === 0 && (
-                            <tr>
-                                <td colSpan="6" className="text-center py-10 text-text-muted">
-                                    No users found.
-                                </td>
-                            </tr>
+                        ))) : (
+                          <tr>
+                              <td colSpan={5} className="py-10 text-center text-text-muted">
+                                  No users found.
+                             </td>
+                          </tr>
                         )}
                     </tbody>
 
