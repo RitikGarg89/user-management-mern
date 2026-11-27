@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchUsers } from '../features/UsersSlice.js'
 import UserForm from '../components/UserForm.jsx';
 import ViewUser from '../components/ViewUser.jsx';
-import ErrorBox from '../components/ErrorBox.jsx';
 
 function DashBoard() {
 
@@ -19,9 +18,8 @@ function DashBoard() {
     const [activeUserForm, setActiveUserForm] = useState(false)
     const [viewUser, setViewUser] = useState(false)
     const [selectedId, setSelectedId] = useState()
-    const [showError, setShowError] = useState(false)
 
-    const { users, error } = useSelector((state) => state.users);
+    const { users } = useSelector((state) => state.users);
     const statsData = [
         {
             id: 1,
@@ -72,7 +70,6 @@ function DashBoard() {
                 <UsersTable setActiveUserForm={setActiveUserForm} setViewUser={setViewUser} setSelectedId={setSelectedId} />
                 {activeUserForm && <UserForm setActiveUserForm={setActiveUserForm} selectedId={selectedId} />}
                 {viewUser && <ViewUser setActiveUserForm={setActiveUserForm} selectedId={selectedId} setViewUser={setViewUser} setSelectedId={setSelectedId} />}
-                {showError && <ErrorBox setShowerror={setShowError} />}
             </main>
         </div>
     )
